@@ -7,5 +7,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/Install-ModuleDependencies.ps1 -ModulePath "../../dist"
+    - run: ${{ github.action_path }}/Install-ModuleDependencies.ps1 -ModulePath "${{ inputs.module-path }}"
       shell: pwsh
