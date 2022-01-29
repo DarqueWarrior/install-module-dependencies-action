@@ -9,3 +9,7 @@ runs:
   steps:
     - run: ${{ github.action_path }}/Install-ModuleDependencies.ps1 -ModulePath "${{ inputs.module-path }}"
       shell: pwsh
+    - run: |
+        $version = ${{ github.action_path }}/Set-VersionNumber.ps1 -ModulePath "${{ inputs.module-path }}" -RevisionNumber ${{ github.run_number }}
+        ${{ github.action_path }}/ConvertTo-NuSpec.ps1 -ModulePath "${{ inputs.module-path }}" -Version $version
+      shell: pwsh

@@ -18,7 +18,7 @@ if ($null -eq (Get-Module -Name Metadata -ListAvailable)) {
 }
 
 # Load the psd1 file so you can read the version
-$manifest = Import-Metadata -Path "$ModulePath/dist/*.psd1"
+$manifest = Import-Metadata -Path "$ModulePath"
 # load as semantic version
 [version]$sem_version = $manifest.ModuleVersion
 
@@ -29,6 +29,6 @@ if ($RevisionNumber -and $RevisionNumber -ne -1) {
 }
 $manifest.ModuleVersion = $package_version
 Write-Host "Package Version Number: $package_version"
-$null = Export-Metadata -Path "$ModulePath/dist/*.psd1" -InputObject $manifest
+$null = Export-Metadata -Path "$ModulePath" -InputObject $manifest
 
 Write-Output $package_version

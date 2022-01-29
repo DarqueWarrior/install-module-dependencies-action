@@ -15,7 +15,7 @@ Write-Host "Create NuSpec from PSD1"
 Install-Module -Name Trackyon.Nuget -Scope CurrentUser -Force
 ConvertTo-NuSpec -Path "$ModulePath"
 
-$filename = [System.IO.Path]::GetFileNameWithoutExtension($ModulePath)
+$filename = [System.IO.Path]::GetFileName($ModulePath)
 
 Write-Host "Pack module"
-nuget pack "$ModulePath/dist/exdate.nuspec" -NonInteractive -OutputDirectory "$ModulePath/dist" -version $Version -Verbosity Detailed
+nuget pack "$($modulePath.Replace('psd1', 'nuspec'))" -NonInteractive -OutputDirectory "$($modulePath.Replace($filename, ''))" -version $Version -Verbosity Detailed
