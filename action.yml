@@ -1,0 +1,11 @@
+name: 'Install Module Dependencies'
+description: 'Installs the dependencies of a module using the psd1 file'
+inputs:
+  module-path:  # the full path to the psd1 file
+    description: 'the full path to the psd1 file'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/Install-ModuleDependencies.ps1 -ModulePath "../../dist"
+      shell: pwsh
